@@ -1,475 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>For You</title>
+<title>Locked</title>
 
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url('spiderman.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #f5f5f5;
-    }
-
-    
-    a, button {
-      background: #ffd6e8;
-      color: #0f0f14;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      width: fit-content;
-      text-decoration: none;
-      margin-top: 20px;
-    }
-
-    nav {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      gap: 12px;
-    }
-
-    .soft-section {
-      background: linear-gradient(180deg, rgba(15,15,20,0.4), rgba(26,26,46,0.7));
-    }
-
-    .text-box {
-      max-width: 650px;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 30px;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-    }
-
-    .text-box p {
-      line-height: 1.9;
-      font-size: 19px;
-      margin-bottom: 20px;
-    }
-
-    a:hover, button:hover {
-      transform: translateY(-2px);
-      transition: 0.2s ease;
-    }
-    .magic {
-  position: relative;
-  overflow: hidden;
+<style>
+body {
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff8fab, #ffc2d1, #ffe5ec);
 }
 
-    .magic::after {
-  content: "✨ ✨ ✨ ✨ ✨";
-  position: absolute;
-  font-size: 30px;
-  animation: floatUp 2s ease forwards;
-}
-
-@keyframes floatUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-20px);
-  }
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 100px 20px;
-}
-
-section + section {
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.reveal {
-  display: none;
-  font-size: 48px;
+.lockbox {
+  background: white;
+  padding: 50px;
+  border-radius: 25px;
   text-align: center;
-  line-height: 1.4;
-  max-width: 900px;
-  margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-.reveal.show {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
+h1 {
+  margin-bottom: 10px;
+}
+
+input {
+  font-size: 1.4rem;
+  padding: 14px;
+  width: 180px;
+  text-align:center;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+  margin-top: 10px;
+}
+
+.pad {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  gap: 12px;
   justify-content: center;
 }
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin-top: 50px;
-}
-.photo-card img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 20px;
+
+.pad button {
+  padding: 16px;
+  font-size: 1.2rem;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: #ffe5ec;
 }
 
-.photo-card p {
-  margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.8;
-  text-align: center;
-}
-.gallery-title {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 20px;
+.pad button:hover {
+  transform: scale(1.06);
 }
 
-.gallery-title span {
-  display: block;
-  font-size: 16px;
-  opacity: 0.7;
-  margin-top: 8px;
-}
-.photo-card img:hover {
-  transform: scale(1.03);
-  transition: 0.3s ease;
+#error {
+  color: #cc0000;
+  margin-top: 15px;
+  font-weight: bold;
+  display:none;
 }
 
-#gallery .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-}
-#gallery {
-  padding: 120px 0;
+/* shake animation */
+.shake {
+  animation: shake 0.4s;
 }
 
-section {
-  clear: both;
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-8px); }
+  100% { transform: translateX(0); }
 }
 
-#gallery {
-  display: block;
-  clear: both;
-  margin-bottom: 120px;
+/* sparkles */
+.sparkles {
+  position: fixed;
+  font-size: 24px;
+  animation: fall 1s linear forwards;
 }
 
-#letter {
-  display: block;
-}
-
-.container {
-  width: 90%;
-  max-width: 1000px;
-  margin: auto;
-}
-section {
-  position: relative;
-  min-height: 100vh;
-  padding: 120px 0;
-  display: block;
-}
-.section-title {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 60px;
-}
-
-.topten-item {
-  background: rgba(0,0,0,0.55);
-  padding: 40px;
-  border-radius: 24px;
-  margin-bottom: 80px;
-}
-
-.topten-item h3 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.topten-item p {
-  line-height: 1.8;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.topten-photos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 25px;
-}
-
-.topten-photos img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 18px;
-}
-.birthday-statement {
-  font-size: 80px;       /* HUGE text */
-  font-weight: 900;      /* extra bold */
-  text-align: center;    /* center on page */
-  color: #ffd6e8;        /* pink pop */
-  text-shadow: 3px 3px 10px rgba(0,0,0,0.7); /* makes it stand out */
-  line-height: 1.2;
-  margin: 200px 0;       /* gives some space around it */
-}
-.birthday-statement {
-  animation: popIn 1s ease forwards;
-}
-
-@keyframes popIn {
-  0% {
-    transform: scale(0.5);
+@keyframes fall {
+  to {
+    transform: translateY(220px);
     opacity: 0;
   }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
-
-  </style>
+</style>
 </head>
 
 <body>
-<section id="home">
-  <div class="container">
-    <h1>HAPPY BIRTHDAY GONZA 07.02.26</h1>
-    <p>ummm idk if this is gonna go to plan itsss my first time doing smth like this so bear w me if there are any mistakes so warning its not the greatest😓💔but hopefully it does go how I imagine it bc I want it to be special for youuuu okay andddd have fun reading ig ILOVEYOU xx..</p>
+
+<div class="lockbox">
+  <h1>shhhh🔒TOP SECRETTT AYY Enter the code</h1>
+  <p>Hint: a very important date (4 numbersss)</p>
+
+  <input id="code" type="password" readonly>
+
+  <div class="pad">
+    <button onclick="press('1')">1</button>
+    <button onclick="press('2')">2</button>
+    <button onclick="press('3')">3</button>
+
+    <button onclick="press('4')">4</button>
+    <button onclick="press('5')">5</button>
+    <button onclick="press('6')">6</button>
+
+    <button onclick="press('7')">7</button>
+    <button onclick="press('8')">8</button>
+    <button onclick="press('9')">9</button>
+
+    <button onclick="clearCode()">⌫</button>
+    <button onclick="press('0')">0</button>
+    <button onclick="checkCode()">OK</button>
   </div>
-</section>
 
-
-<nav>
-  <a href="#home">Home</a>
-  <a href="#thought">G</a>
-  <a href="#letter">O</a>
-  <a href="#gallery">N</a>
-  <a href="#birthday">Z</a>
-  <a href="#video">A</a>
-
-
-</nav>
-
-<section>
-  <h1>helloloeoeooe gonzaaaa it is I (joannamariamviju) I will say the date today it isssss the 20th january 2026 yes cld i have started this ealier yeppp BUT BEAR W ME ive had the idea longer okayyyy i was js procrastinatinggg i swr ANYWAYSSS SIT BACK RELAX AND GRAB SOME POPCORN BC THIS SHLD TAKE A BIT(unless u speedread) I LOVE YOU X .</h1>
-  <p></p>
-  <a href="#thought">Start →</a>
-</section>
-
-<section id="thought">
-  <h1> FIRSTLY HAPPY BIRTHDAYYYYYY🎂 js keep scorlling down okayyyy
-
-</h1>
-</section>
-
-
-
-
-
-
- 
- <section id="birthday" class="soft-section">
-  <div class="container">
-
-    <h2>HAPPY BIRTHDAY GONZAAAA UR 15 WOAH</h2>
-    <button onclick="reveal()">CLICKK</button>
-
-    <div id="hidden" class="reveal">
-      happy birthday🎂ITS YOUR BIRTHDAY, WHEN UR READING THIS HOPEFULLY SOOO I will start offfff with number one HAPPY BIRTHDAY haveeee a very good year ahead I’m so grateful I’ve got to know you for this long and be with you and in a way we’ve grown up some together as well and I cantttt wait to continue getting to know you and be in your life. <br>
-
-
- Even tho your younger (by 4 months hehe),I still look up to you in many wayssss and you motivate me to become better not only for myself but for you and everyone else I AM SO INCREDIBLY GRATEFUL may god bless youuu in this upcoming year and I really hope the best for you and ur studies and ur goals and EVERYHTING I really mean it and it genuinely makes me happy to see you doing wellllll, I am already very proud of you and the effort you take and I’m only going to get more prouder gonza I love you so much anywayayyayayay ur finally 15 that’s pretty cool,EXTREMELY COOL INFACT cuz im 15 so we in sync now twin 👍🥹. <br><br>
-
-
-I really cant believe its also techinically our one year mark of our first hangout bc today last year we had a lil unplanned sainsburys trip where i bought u ur first pack of bourbons of manyyy (and much more to come duhhh🥹) where both of us were so shy and awkward BUT LOOK AT US NOW IM SOSOSOOO PROUD.
- Especially when things havent been the easiest on you , this previous year was a significant one even if u dont feel so, u moved to ANOTHER WHOLE COUNTRY (literally ur life changed overnight),youve had to say good bye to some of your bestest friends and had to leave behind your family and friends and people you love,youve had to make new friends which sounds soppy but youve done really well at that as well from what youve told me youve made some rlly nice friends and im proud of that too bc im proud of anything my baby achievess AND MY PERSONAL FAV U MET MEEE   <br>
-
-
-Even over the past year ive gotten to know you and take you in as significant part of my life and honestly it has been one of the bestest things i have ever received. i am so very grateful for your existence itself but moreover i am so thankful that i am loved by my best friend, my soulmate, my boyfriend. My standards are no ever so impossibly high i fear it may never lower again and the feeling of reassurance and understanding that you show is something i take for granted. <br><br>
-    </div>
-
-  </div>
-</section>
-
-
-
-
+  <div id="error">❌ try again</div>
+</div>
 
 <script>
-  function reveal() {
-    document.getElementById("hidden").style.display = "block";
+/* 🔊 click sound */
+function playClick() {
+  const a = new Audio("click.mp3");
+  a.volume = 0.4;
+  a.play();
+}
+
+/* keypad press */
+function press(n) {
+  playClick();
+  document.getElementById("code").value += n;
+}
+
+/* delete */
+function clearCode() {
+  playClick();
+  const box = document.getElementById("code");
+  box.value = box.value.slice(0, -1);
+}
+
+/* check code */
+function checkCode() {
+  const correct = "2406";   // 
+  const entered = document.getElementById("code").value;
+
+  if (entered === correct) {
+    sparkleBurst();
+    setTimeout(() => {
+      window.location.href = "valentine.html";
+    }, 900);
+  } else {
+    const box = document.querySelector(".lockbox");
+    box.classList.add("shake");
+    setTimeout(() => box.classList.remove("shake"), 400);
+    document.getElementById("error").style.display = "block";
   }
+}
 
-  function reveal() {
-    document.getElementById("hidden").classList.add("show");
+/* sparkles */
+function sparkleBurst() {
+  for (let i = 0; i < 25; i++) {
+    const s = document.createElement("div");
+    s.className = "sparkles";
+    s.innerHTML = "✨";
+    s.style.left = Math.random()*100 + "vw";
+    s.style.top = "40vh";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
   }
-
-
+}
 </script>
 
-<section id="gallery">
-  <div class="container">
-
-    <h2 class="gallery-title">
-      USSS AYYYYY or js photos i rlly love of uuu🙃 <span>(we will have more in the moment photos together soon king dw😔)</span>
-    </h2>
-
-<div class="gallery">
-
-<div class="photo-card">
-  <img src="gallery1.jpeg">
-  <p>lotta hand pics basically😋 </p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery2.jpeg">
-  <p>TOES</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery3.jpeg">
-  <p>dis one cute ;3</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery4.jpeg">
-  <p>more hands x</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery5.jpeg">
-  <p>this one means a lot to me UR WEARING MY GIFTTTT and u js look so adorable i wanna eat you smh</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery6.jpeg">
-  <p>eheheheh</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery7.jpeg">
-  <p>we love toes doent we💔</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery8.jpeg">
-  <p>elite one cuz toes AND hand but it also js looks tuff x</p>
-</div>
-<div class="photo-card">
-  <img src="gallery9.jpeg">
-  <p>ANOTHER ONE I WILL NOT SHUT UP ABT ur such a cutie askhasj</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery10.jpeg">
-  <p>love heart💞</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery11.jpeg">
-  <p>autistic online pinky promise:)</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery12.jpeg">
-  <p> so silly but i wanna kiss u </p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery13.jpeg">
-  <p>RAHHHHHHHH u look so biteable man u dont get it </p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery14.jpeg">
-  <p>WORDD</p>
-</div>
-
-<div class="photo-card">
-  <img src="gallery15.jpeg">
-  <p>i rlly like this one u look lik a cheeky lil bean awww i wanna hug u more now </p>
-</div>
-
-
-
-    </div>
-
- </div>
-
-</section>
-
-<section id="top-ten">
-  <div class="container">
-
-    <h2 class="section-title">
-       a humble wat i love abt u (but i realised theres no way its beating ur 365 one so imma js mix in what i miss too)
-    </h2>
-
-    <div class="topten-list">
-
-      <div class="topten-item">
-        <h3>💐.I MISS SEEING YOU </h3>
-
-        <p>
-          IMISSYOU,URBEAUTIFULHANDSOMECUTEPRETTYFACE,URPRESENCE literally everyhtingg,Genuinely one of the harrrdest parts of this ldr relationship is the fact i highk have attachment issues smh. Every time i see you in real life i feel like all my issues dissappear and i feel so happy and loved and i just love us so much in general, ur presence comforts me and i feel so comfortable and safe and jst warm i cant explain it. when im with you i dont have a care for anyhing in the world but you and i love js being in our own world togetherr :). In a way tho the distance has helped us (ik ive also said that a bajillionnn times BUT i think that everytimie i think abt how far away you are smh.  
-        </p>
-
-        <p>
-IF U LOOK AT THE EXAMPLES OF EVIDENCE PROVIDED BELOW joanna viju is not seen ATLEAST TOUCHING A SINGLE SKIN CELL W GONZA TABULAS BUT RATHER HER CELLULAR DEVICE so she RLLY gotta lock in fr🙄WHEN I SEE U AGAINNN  hopefully soon enoguh WE WILL WE HOLDING HANDS 98 PERCENT OF THE TIME OKAY SMH i willll reallyreallyreallyyy cherish and try spend every moment just with you and focused on youu bc im missing u so bad rn :( and i need a hug. and a kiss. and to hold hands. and to breathe you in. i js need you basically.
-        </p>
-
-        <div class="topten-photos">
-          <img src="love1.jpeg">
-          <img src="love2.jpeg">
-        </div>
-      </div>
-
-      <div class="topten-item">
-        <h3>💐.WHAT I LOVEEEEEE </h3>
-
-        <p>
-          WHERE DO I BEGIN OHMYGOSHSHHSHHS. DO NOT SAY ANYTHING LIKE IM GLAZING U OR IM BEING NICE BCCCCC I MEAN EVERYSINGLE THING W MY HEART AND SOUL OKAY.illll strat of w like personality traitssss. i reallyreally like how i can go to u as a bestfriend and a boyfriend yk, like i would go to you first for advice and i like how u bring out a perspective of smth i wldve never thought of on my own i think thats pretty cool. Like i think your a very good balance of like the right time to be serious and then playful cuz its like best of both worlds yk and thats also something not many ppl ik can do well. I loveloveloveeee how reassuring you are, genuinely it matters to me more than you think. it makes me feel safe and loved and im js sosososooooo gratful for that okayyy i think ive alr said that ealier but i really do mean it. you also made me believe in love, ik that sounds very cliche but its honestly true bc i just didnt think i cld be in a healthy loving lasting relationship that is until i met you. i loveee all the nicknames u call meeee it makes me feel more special (I WILL BE MAKING ONE FOR U SMH joanna lacking fr AGAIN) so again thank you very muchhcuchuc. I love you passionate you are in certain things, im not gna dive too deep into specifics bc of a certain reason and i dont wanna ruin this vibe smh BUT BELIVE ME even tho some of my past actions that i REALLY DO REGRET have said otherwise, i rlly like how excited u get or passionate u get to talk abt smth its so cutee. That also reminds meee, it sounds a bit strange but i like how we resolve most of our issues within the same day and we both usually end up apologising. ik disputes arent good but looking at the bright side it is something we will go through anyway and we learn and grow from that and i think thats sweet :)  i like how honest you are whether that be abt your feelings, smth that happened or just in general, it really helps me to trust you and know u more. im grateful for how you opened up to me abt certain things and im glad i was trusted enough to know. im grateful for all the times u had to travel to see mee, risk getting abused by ur mom bc u kept soming home late😭😭, all the times you dealt w me acting up or being slow or stupid, for spending time with me, paying for my tickets each time😔✌️, STAYING UP LATE MBB idk how u dealt w all the times i fell asleep (JOANNA IS PATTENED UP NOW TRSUTTT),LETTINH ME BITE U LICK U HARRASS U vvvvvvery grateful king thankyou 😖
-        </p>
-
-        <p>
-i lowkirkenuinly js turned that into a yap abt what im gratful for instead of what i love smh but I LOVE YOU, I LOVE HUGS FROM YOU, I LOVE ANYHTING FROM YOU, i LOVE every single one of ur body parts (that kinda sounds strange but allow) (yes i will even love ur toes) (ur dih)(MAJESTIC FINESHYT BEAUTIFUL HANDSOME FACE) (ur torso bc its yummy and very huggable)(yep even ur teeth and ur legs and ur arms and your shoulders and your back and ur buttcheeks and your abs and ur ankles and your fingers) UR SMILE IS THE CUTEST THING TO HAVE BLESSED MY EYEBALLS do it more :) i love your laugh ur voice i rember replaying voicenotes and videos over and over bc u sounded cute or i just thought ur voice was nice to listen to. BUT ITS BEST WHEN I HEAR IT IRL DUHHH, i love the way you u rember things very well and how real you feel, i love hanging out w u and js messing abt, i loved our priv moments in some random disabled bathroom (now that i think abt it it was those baby changing bathrroms but both work bc WE r disabled😹 and ur also my baby and we did do some form of changing🤔😽) AND THE MONDAY PARKING LOT AHHHHHH our homless hang was sossosoos peak🤭, i love the ealry days, i love the seeing u and avoiding u at all possible costs thing i was doin then smh, i love ur hair its very nice to touch and i like getting updated on its growth journeys cuz ur hair do be growing fast(NYOOOM), I LOVE OUR PLAYLIST, i love our hand sign, i love the way u walk, the way u attempt to alway hit the top of poles, getting lost in slough in some random alleywya, us escaping ppl we know in public lol, i love your personality, i love your looks , i love how our hands match and pretty much our heights, i love our daily updates eveery day abt how our lives r going on that day, i love you when ur happy,sad,angry,calm,excited,cute,normal,weird,sleepy,energetic,at your highest and your lowests. i really really love you as a person, i love you gonza. I LOVELOVELOVELOVELOVELOVELOVELOVEEEE YOU MWAHHH X
-        </p>
-
-
-      
-    </div>
-
-  </div>
-</section>
-
-<section id="final-birthday">
-  <div class="container">
-    <h1 class="birthday-statement">
-      🎉 HAPPY 15TH BIRTHDAY GONZA! 🎉<br>
-      I LOVE YOU SOOOOOO MUCH im sorry i cldnt be there to celebrate it with you BUT HAVE A GOOD DAY BABYYY💖💖💖
-ratio signing out😪🤫✌️(AHHAHAHAHA DONT KILL ME YES UR KING RATIO todays an exception for future queen ratio tho trust💔) 
-byebye now thennnnnn lalallaalalaliloveyouuulallalaala
-    </h1>
-  </div>
-</section>
-
-
-</body
-<!-- On index.html -->
-<a href="valentine.html">Valentine Page</a>
-<a href="lock.html">Lock Page</a>
-
+</body>
 </html>
-
